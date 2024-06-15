@@ -5,10 +5,10 @@ import { useState } from "react";
 
 const App = () => {
   const [input, setInput] = useState({
-    initialInvestment: " ",
-    annualInvestment: " ",
-    expectedReturn: " ",
-    duration: " ",
+    initialInvestment: 10000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10,
   });
 
   function handleChange(inputIdentifier, newValue) {
@@ -21,6 +21,7 @@ const App = () => {
   }
 
   const inputIsValid = input.duration >= 1;
+
   return (
     <>
       <Header />
