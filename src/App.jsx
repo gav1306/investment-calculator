@@ -10,27 +10,24 @@ const App = () => {
     expectedReturn: 6,
     duration: 10,
   });
+  const [isNotNegative, setIsNotNegative] = useState(true);
 
   function handleChange(inputIdentifier, newValue) {
     setInput((prevInput) => {
-      return {
-        ...prevInput,
-        [inputIdentifier]: +newValue,
-      };
+      return { ...prevInput, [inputIdentifier]: +newValue };
     });
+    if (newValue <= 0) {
+      setIsNotNegative(false);
+    } else {
+      setIsNotNegative(true);
+    }
   }
-
-  const inputIsValid = input.duration >= 1;
 
   return (
     <>
       <Header />
       <UserInputs onChange={handleChange} input={input} />
-
-      {!inputIsValid && (
-        <p className="center">Please enter a duration greater than zero </p>
-      )}
-      {inputIsValid && <Results input={input} />}
+      <Results input={input} notNegative={isNotNegative} />
     </>
   );
 };

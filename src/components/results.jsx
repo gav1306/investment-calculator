@@ -1,13 +1,15 @@
 import { calculateInvestmentResults, formatter } from "../util/investment";
 
-const Results = ({ input }) => {
+const Results = ({ input, notNegative }) => {
   const resultData = calculateInvestmentResults(input);
   const initialInvestment =
-    resultData[0].valueEndOfYear -
-    resultData[0].interest -
-    resultData[0].annualInvestment;
+    resultData[0]?.valueEndOfYear -
+    resultData[0]?.interest -
+    resultData[0]?.annualInvestment;
 
-  return (
+  return notNegative === false ? (
+    <p className="center">Incorrect Input</p>
+  ) : (
     <table id="result">
       <thead>
         <tr>
